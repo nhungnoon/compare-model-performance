@@ -2,18 +2,9 @@
 A customized CNN model
 """
 
-import numpy as np
-import pandas as pd
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
-from torch.utils.data import Dataset, TensorDataset
-from torchvision import transforms
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import os
-import cv2
-from torchvision.transforms import v2
+
 
 class CNN_model(nn.Module):
     def __init__(self):
