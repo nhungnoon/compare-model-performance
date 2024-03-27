@@ -5,7 +5,8 @@ A customized CNN model
 import torch
 import torch.nn as nn
 
-
+# based on 
+# https://github.com/nhungnoon/Final-Project-Group3/blob/master/Nhung-Nguyen-individual-project/Code/pytorch_ver.py
 class CNN_model(nn.Module):
     def __init__(self):
         super(CNN_model, self).__init__()
