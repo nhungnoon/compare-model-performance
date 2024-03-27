@@ -31,7 +31,7 @@ def random_transform_image(tensor):
             v2.RandomResizedCrop(size=(28, 28), antialias=True),
             v2.RandomPhotometricDistort(p=1),
             v2.RandomHorizontalFlip(p=0.25),
-            v2.Normalize(mean=[0.485], std=[0.229]),
+            v2.Normalize(mean=[0.45], std=[0.29]),
         ]
     )
     return transforms(tensor)
@@ -58,6 +58,7 @@ class CustomTensorDataset(Dataset):
     """
     TensorDataset with support of transforms
     """
+
     def __init__(self, tensors, transform=None):
         assert all(tensors[0].size(0) == tensor.size(0) for tensor in tensors)
         self.tensors = tensors
@@ -65,12 +66,10 @@ class CustomTensorDataset(Dataset):
 
     def __getitem__(self, index):
         x = self.tensors[0][index]
-
         if self.transform:
             transform_x = self.transform(x)
 
         y = self.tensors[1][index]
-
         return transform_x, y
 
     def __len__(self):
