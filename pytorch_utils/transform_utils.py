@@ -4,6 +4,7 @@ Store transform functions
 
 import numpy as np
 from torchvision.transforms import v2
+from torch.utils.data import Dataset
 
 # based on
 # https://pytorch.org/vision/stable/auto_examples/transforms/plot_transforms_getting_started.html#sphx-glr-auto-examples-transforms-plot-transforms-getting-started-py
@@ -50,3 +51,27 @@ def transform_tensor(tensor):
 
     tensor = transforms(tensor)
     return tensor
+
+
+# based on https://stackoverflow.com/questions/55588201/pytorch-transforms-on-tensordataset
+class CustomTensorDataset(Dataset):
+    """
+    TensorDataset with support of transforms
+    """
+    def __init__(self, tensors, transform=None):
+        assert all(tensors[0].size(0) == tensor.size(0) for tensor in tensors)
+        self.tensors = tensors
+        self.transform = transform
+
+    def __getitem__(self, index):
+        x = self.tensors[0][index]
+
+        if self.transform:
+            transform_x = self.transform(x)
+
+        y = self.tensors[1][index]
+
+        return transform_x, y
+
+    def __len__(self):
+        return self.tensors[0].size(0)
