@@ -1,10 +1,10 @@
 """
 A sequential model  
+Based on https://www.tensorflow.org/guide/keras/making_new_layers_and_models_via_subclassing
 """
 
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Conv2D, Dense, Flatten, Dropout
-
 
 class TFSequentialModel(Model):
 
