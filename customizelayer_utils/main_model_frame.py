@@ -29,6 +29,7 @@ class CustomizedBlock(Layer):
             padding="same",
         )
         self.batch_norm_2 = BatchNormalization()
+        # dropout to reduce over-fitting
         self.drop_1 = Dropout(0.25)
         self.conv_3 = Conv2D(self.out_filters, (1, 1))
         self.batch_norm_3 = BatchNormalization()
