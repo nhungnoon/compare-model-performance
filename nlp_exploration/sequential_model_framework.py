@@ -13,12 +13,14 @@ class NLPSequentialModel(Model, Layer):
             activation="relu",
             kernel_regularizer=regularizers.l1(0.001),
         )
+        # drop out to avoid overfitting
         self.drop_layer = Dropout(0.5)
         self.dense_2 = Dense(
             64,
             activation="relu",
             kernel_regularizer=regularizers.l2(0.001),
         )
+        # TODO make the class number flexible
         self.final_dense = Dense(46, activation="softmax")
 
     def build(self, input_shape):
