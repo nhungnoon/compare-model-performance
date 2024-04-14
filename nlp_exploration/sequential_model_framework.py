@@ -20,6 +20,7 @@ class NLPSequentialModel(Model, Layer):
             activation="relu",
             kernel_regularizer=regularizers.l2(0.001),
         )
+        self.drop_layer2 = Dropout(0.25)
         # TODO make the class number flexible
         self.final_dense = Dense(46, activation="softmax")
 
@@ -38,6 +39,7 @@ class NLPSequentialModel(Model, Layer):
         x = self.dense_1(inputs)
         x = self.drop_layer(x)
         x = self.dense_2(x)
+        x = self.drop_layer2(x)
         x = self.final_dense(x)
 
         return x
