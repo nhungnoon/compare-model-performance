@@ -1,3 +1,4 @@
+import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import Model
 from keras import regularizers
@@ -19,6 +20,7 @@ class NLPSequentialModel(Model, Layer):
             64,
             activation="relu",
             kernel_regularizer=regularizers.l2(0.001),
+            kernel_initializer="glorot_uniform",
         )
         self.drop_layer2 = Dropout(0.25)
         # TODO make the class number flexible
@@ -43,3 +45,15 @@ class NLPSequentialModel(Model, Layer):
         x = self.final_dense(x)
 
         return x
+
+
+def transform_data(x_array, buffer_size):
+    """
+    transform data for reuters data
+    to get the correct shape
+    https://keras.io/api/datasets/reuters/
+    """
+    results = np.zeros((len(x_array), buffer_size))
+    for i, j in enumerate(x_array):
+        results[i, j] = 1.0
+    return results
