@@ -47,7 +47,12 @@ class NLPSequentialModel(Model, Layer):
         return x
 
 
-def transform_data(x_array, buffer_size=5000):
+def transform_data(x_array, buffer_size):
+    """
+    transform data for reuters data
+    to get the correct shape
+    https://keras.io/api/datasets/reuters/
+    """
     results = np.zeros((len(x_array), buffer_size))
     for i, j in enumerate(x_array):
         results[i, j] = 1.0
