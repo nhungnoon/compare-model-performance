@@ -20,10 +20,9 @@ def dt_classifier():
 def multinominal_nb():
     return MultinomialNB(alpha=0.8)
 
+
 def rf_classifier():
-    rf_classified  = RandomForestClassifier(
-    max_depth=3, 
-    min_samples_split=5,
-    class_weight="balanced",
-     random_state=16)
+    rf_classified = RandomForestClassifier(
+        max_depth=3, min_samples_split=5, class_weight="balanced", random_state=16
+    )
     return rf_classified
