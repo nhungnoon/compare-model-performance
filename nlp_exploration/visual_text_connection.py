@@ -10,13 +10,29 @@
 ####  pages     = {69--73},
 ####  url       = {http://aclweb.org/anthology/C16-2015}
 #### }
-
+#### https://radimrehurek.com/gensim/install.html
+#### https://radimrehurek.com/gensim/auto_examples/tutorials/run_lda.html
 
 import pke
 import networkx as nx
 import nltk
+import gensim
+from gensim import corpora
 
 
+def gensim_topic_model(input_token_list):
+    """
+    Create a topic model 
+    """
+    # Create dictionary based on the list of tokens
+    dictionary = corpora.Dictionary(d.split() for d in input_token_list)
+    # create word_matrix to input into the model
+    list_2 = [d.split() for d in input_token_list]
+    word_matrix = [dictionary.doc2bow(doc) for doc in list_2]
+    Lda = gensim.models.ldamodel.LdaModel
+    ldamodel = Lda(word_matrix, num_topics=5, id2word = dictionary, passes=5)
+    return ldamodel
+    
 def graph_word_connection(input_text):
     """
     format input text and plot connection for chosen part of speech
