@@ -104,7 +104,6 @@ def gridsearch_best_model():
                'clf__min_samples_leaf': [1, 10, 20]}]
 
 
-    # The list of [best_score_, best_params_, best_estimator_]
     best_score_param_classifier= []
 
     # For each classifier
@@ -119,7 +118,7 @@ def gridsearch_best_model():
         # Fit the pipeline
         gs = gs.fit(X_train, y_train)
         
-        # Update best_score_param_estimators
+        # append score
         best_score_param_classifier.append([gs.best_score_, gs.best_params_, gs.best_estimator_])
 
    return best_score_param_classifier
