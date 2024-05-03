@@ -208,11 +208,11 @@ def grid_search_digits_data(X_train, y_train):
     return best_estimators
 
 
-def visualize_dt_digits(best_estimators, input_data, max_depth):
+def visualize_dt_digits(best_estimators, input_data_columns, max_depth):
     plt.figure(figsize=(40, 20))
     _ = tree.plot_tree(
         best_estimators[0][2][0],
-        feature_names=input_data["data"].columns.tolist(),
+        feature_names=input_data_columns,
         filled=True,
         fontsize=6,
         rounded=True,
