@@ -7,6 +7,9 @@ def generate_mapping_country_name(
     df1,
     df2,
 ):
+    """
+    Generate country name by matching iso_a3 
+    """
     name_mapping = {}
     for country_name in df1["country"]:
         try:
@@ -21,5 +24,8 @@ def generate_mapping_country_name(
 
 
 def read_world_df():
+    """
+    Load in world shapefile
+    """
     world_df = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
     return world_df
